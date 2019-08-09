@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+      <div class='row'>
+          <div class='col-md-2'>Filter by:</div>
+          <div class='col-md-4'>
+              <input type='text'/>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-2"></div> 
+      </div>
+      <div class='row'>
+          <div class='col-md-6'>
+              <h3>Filtered by: {{listFilter}} </h3>
+          </div>
+      </div>
+      <table class=" table">
+        <thead>
+            <tr>
+              <th>
+                <button class='btn btn-primary' (click)='toggleImage()'>
+                    {{showImage ? 'An': 'Hien'}} Image
+                </button>
+              </th>
+              <th>Product</th>
+              <th>Code</th>
+              <th>Available</th>
+              <th>Price </th>
+              <th>5 Star Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+
+<tr *ngFor='let product of listproducts'>
+              <td>
+                <img src='assets/images/{{product.imageUrl}}' width="50px">
+              </td>
+              <td>
+                      {{ product.productName }}
+              </td>
+              <td>{{ product.productCode | lowercase}}</td>
+              <td>{{ product.releaseDate }}</td>
+              <td>{{ product.price | currency:'USD':true:'1.2-2'}}</td>
+              <td>
+                <div class="crop" 
+                      [style.width.px]="product.starRating*75/5"
+                      [title]="rating"
+                      (click)="onClick()">
+                      <div style="width: 75px">
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                      </div>
+               </div>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+  </div>
+</div>
